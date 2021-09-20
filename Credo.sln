@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Credo", "Credo\Credo.csproj", "{FF578C83-2381-4216-8BA5-241597939559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credo.Data", "Credo.Data\Credo.Data.csproj", "{71022887-DB11-4E1F-9F3F-AA41286F8F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credo.Domain", "Credo.Domain\Credo.Domain.csproj", "{BEE32EAD-37CE-403F-8DC4-B0FAFF573760}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF578C83-2381-4216-8BA5-241597939559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF578C83-2381-4216-8BA5-241597939559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF578C83-2381-4216-8BA5-241597939559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF578C83-2381-4216-8BA5-241597939559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71022887-DB11-4E1F-9F3F-AA41286F8F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71022887-DB11-4E1F-9F3F-AA41286F8F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71022887-DB11-4E1F-9F3F-AA41286F8F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71022887-DB11-4E1F-9F3F-AA41286F8F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE32EAD-37CE-403F-8DC4-B0FAFF573760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE32EAD-37CE-403F-8DC4-B0FAFF573760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE32EAD-37CE-403F-8DC4-B0FAFF573760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE32EAD-37CE-403F-8DC4-B0FAFF573760}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2051D27A-1CD6-417D-BD22-0825354AFC5B}
+	EndGlobalSection
+EndGlobal
