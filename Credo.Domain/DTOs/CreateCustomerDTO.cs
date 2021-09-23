@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Credo.Domain.DTOs
@@ -12,8 +12,6 @@ namespace Credo.Domain.DTOs
         {
             Id = Guid.NewGuid();
             Username = username;
-            PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
             Name = name;
             Lastname = lastname;
             PersonalNumber = personalNumber;
@@ -27,8 +25,6 @@ namespace Credo.Domain.DTOs
         public Guid Id { get; set; }
         public string Username { get; set; }
         public string PasswordToHash { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string PersonalNumber { get; set; }

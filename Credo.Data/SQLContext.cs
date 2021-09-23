@@ -1,8 +1,5 @@
 ﻿using Credo.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Credo.Data
 {
@@ -12,6 +9,7 @@ namespace Credo.Data
 
         public DbSet<Customer> Customer { get; set; }
         public DbSet<LoanRequst> LoanRequst { get; set; }
+        public DbSet<Log> Log { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,20 +17,24 @@ namespace Credo.Data
 
             modelBuilder.Entity<Customer>()
                 .HasKey(k => k.Id);
+           
             modelBuilder.Entity<Customer>()
-                .Property(p => p.Name).HasMaxLength(50);
+                .HasMany(k => k.LoanRequst);
+
             modelBuilder.Entity<Customer>()
-                .Property(p => p.Lastname).HasMaxLength(100);
+                .Property(p => p.Name).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Customer>()
-                .Property(p => p.Username).HasMaxLength(100);
+                .Property(p => p.Lastname).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Customer>()
-                .Property(p => p.PasswordHash).HasMaxLength(1000);
+                .Property(p => p.Username).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Customer>()
-                .Property(p => p.PasswordSalt).HasMaxLength(1000);
+                .Property(p => p.PasswordHash).HasMaxLength(1000).IsRequired();
             modelBuilder.Entity<Customer>()
-                .Property(p => p.PersonalNumber).HasMaxLength(20);
+                .Property(p => p.PasswordSalt).HasMaxLength(1000).IsRequired();
             modelBuilder.Entity<Customer>()
-                .Property(p => p.Phone).HasMaxLength(50);
+                .Property(p => p.PersonalNumber).HasMaxLength(20).IsRequired();
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.Phone).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Customer>()
                 .Property(p => p.Email).HasMaxLength(100);
 
@@ -43,7 +45,19 @@ namespace Credo.Data
             modelBuilder.Entity<LoanRequst>()
                 .HasKey(k => k.Id);
             modelBuilder.Entity<LoanRequst>()
-               .Property(p => p.Currency).HasMaxLength(5);
+                .Property(p => p.Amount).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.Currency).HasMaxLength(5).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.From).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.To).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.ActionDate).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.Type).IsRequired();
+            modelBuilder.Entity<LoanRequst>()
+                .Property(p => p.LoanStatus).IsRequired();
 
             modelBuilder.Entity<LoanRequst>()
                 .HasOne(c => c.Customer)
@@ -52,6 +66,14 @@ namespace Credo.Data
 
             #endregion
 
+            #region Log
+
+            modelBuilder.Entity<Log>()
+               .HasKey(k => k.Id);
+            modelBuilder.Entity<Log>()
+               .Property(k => k.Body).IsRequired();
+
+            #endregion
         }
     }
 }

@@ -1,23 +1,46 @@
-﻿using Credo.Interfaces;
+﻿using Credo.Data.Configuration;
+using Credo.Data.Shared;
+using Credo.Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Credo
 {
     public class JwtAuthenticationManager : IJwtAuthenticationManager
     {
-        private readonly IDictionary<string, string> users = new Dictionary<string, string>
-        { {"user1", "password123" }, { "user2", "password321"} };
+        private readonly IConfiguration _configuration;
+        private readonly string _key;
 
-        public string Authenticate(string username, string password)
+        public JwtAuthenticationManager(IConfiguration configuration)
         {
-            if (!users.Any(p => p.Key == username && p.Value == password))
+            _configuration = configuration;
+            _key = _configuration["tokenManagement:secret"];
+        }
+
+        public string Authenticate(string username)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenKey = Encoding.ASCII.GetBytes(_key);
+            var tokeDescriptor = new SecurityTokenDescriptor
             {
-                return string.Empty;
-            }
-            return string.Empty;
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, username)
+                }),
+                Expires = DateTime.Now.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokeDescriptor);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

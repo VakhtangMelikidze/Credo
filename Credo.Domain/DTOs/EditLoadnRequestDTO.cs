@@ -1,20 +1,20 @@
 ﻿using Credo.Domain.Enums;
-using Credo.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Credo.Domain.DTOs
 {
-    public class CreateLoanRequestDTO
+    public class EditLoadnRequestDTO
     {
-        public CreateLoanRequestDTO(decimal amount, string currency, DateTime from, DateTime to, DateTime actionDate, LoanType type, LoanStatus loanStatus, Guid customerId)
+        public EditLoadnRequestDTO(Guid id, decimal amount, string currency, DateTime from, DateTime to, DateTime approveDate, DateTime actionDate, LoanType type, LoanStatus loanStatus, Guid customerId)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Amount = amount;
             Currency = currency;
             From = from;
             To = to;
+            ApproveDate = approveDate;
             ActionDate = actionDate;
             Type = type;
             LoanStatus = loanStatus;

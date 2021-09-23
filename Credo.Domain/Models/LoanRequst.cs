@@ -15,7 +15,6 @@ namespace Credo.Domain.Models
         public DateTime? ApproveDate { get; set; }
         public DateTime ActionDate { get; set; }
 
-        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
         public LoanType Type { get; set; }
